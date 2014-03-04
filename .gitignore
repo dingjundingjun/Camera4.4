@@ -1,0 +1,13 @@
+*.pyc
+.settings/
+ic_launcher-web.png
+lint.xml
+*.*~
+*.py~
+.cproject
+*~
+*.o
+*.cmd
+bin/*
+obj/*
+gen/*
