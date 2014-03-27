@@ -192,7 +192,7 @@ public class CameraActivity extends Activity
     private Intent mVideoShareIntent;
     private Intent mImageShareIntent;
 
-    private class MyOrientationEventListener
+    private class MyOrientationEventListener    //监听orientation
             extends OrientationEventListener {
         public MyOrientationEventListener(Context context) {
             super(context);
@@ -1036,17 +1036,16 @@ public class CameraActivity extends Activity
         } else {
             mSecureCamera = intent.getBooleanExtra(SECURE_CAMERA_EXTRA, false);
         }
-
         if (mSecureCamera) {
             // Change the window flags so that secure camera can show when locked
             Window win = getWindow();
             WindowManager.LayoutParams params = win.getAttributes();
-            params.flags |= WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED;
+            params.flags |= WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED;    //锁屏时候，悬浮在锁屏上方，退出以后显示锁屏界面
             win.setAttributes(params);
 
             // Filter for screen off so that we can finish secure camera activity
             // when screen is off.
-            IntentFilter filter = new IntentFilter(Intent.ACTION_SCREEN_OFF);
+            IntentFilter filter = new IntentFilter(Intent.ACTION_SCREEN_OFF);    //屏幕关了就结束掉？那岂不是只能作用于锁屏时候才能用咯。
             registerReceiver(mScreenOffReceiver, filter);
             // TODO: This static screen off event receiver is a workaround to the
             // double onResume() invocation (onResume->onPause->onResume). We should
@@ -1057,13 +1056,13 @@ public class CameraActivity extends Activity
             }
         }
         mAboveFilmstripControlLayout =
-                (FrameLayout) findViewById(R.id.camera_above_filmstrip_layout);
+                (FrameLayout) findViewById(R.id.camera_above_filmstrip_layout);    //这个是干什么的？
         mAboveFilmstripControlLayout.setFitsSystemWindows(true);
         // Hide action bar first since we are in full screen mode first, and
         // switch the system UI to lights-out mode.
-        this.setSystemBarsVisibility(false);
+        this.setSystemBarsVisibility(false);    //默认进来当然是隐藏actionBar拉
         mPanoramaManager = AppManagerFactory.getInstance(this)
-                .getPanoramaStitchingManager();
+                .getPanoramaStitchingManager();    //这个是全景拼接  先放着
         mPlaceholderManager = AppManagerFactory.getInstance(this)
                 .getGcamProcessingManager();
         mPanoramaManager.addTaskListener(mStitchingListener);
@@ -1109,7 +1108,7 @@ public class CameraActivity extends Activity
         } else {
             // If the activity has not been started using an explicit intent,
             // read the module index from the last time the user changed modes
-            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);    //如果没有设置，就读取上一次退出时候的模式
             moduleIndex = prefs.getInt(CameraSettings.KEY_STARTUP_MODULE_INDEX, -1);
             if ((moduleIndex == ModuleSwitcher.GCAM_MODULE_INDEX &&
                     !GcamHelper.hasGcamCapture()) || moduleIndex < 0) {

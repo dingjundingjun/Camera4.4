@@ -194,10 +194,10 @@ public class PhotoUI implements PieListener,
         mRootView = parent;
 
         mActivity.getLayoutInflater().inflate(R.layout.photo_module,
-                (ViewGroup) mRootView, true);
-        mRenderOverlay = (RenderOverlay) mRootView.findViewById(R.id.render_overlay);
-        mFlashOverlay = mRootView.findViewById(R.id.flash_overlay);
-        mPreviewCover = mRootView.findViewById(R.id.preview_cover);
+                (ViewGroup) mRootView, true);    //将拍照界面添加到根布局中
+        mRenderOverlay = (RenderOverlay) mRootView.findViewById(R.id.render_overlay);    //这个不知道是干什么的？
+        mFlashOverlay = mRootView.findViewById(R.id.flash_overlay);    //这个不知道是干什么的？
+        mPreviewCover = mRootView.findViewById(R.id.preview_cover);    //这个不知道是干什么的？
         // display the view
         mTextureView = (TextureView) mRootView.findViewById(R.id.preview_content);
         mTextureView.setSurfaceTextureListener(this);

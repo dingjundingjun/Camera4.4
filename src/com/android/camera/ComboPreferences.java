@@ -119,7 +119,7 @@ public class ComboPreferences implements
 
     // Sets the camera id and reads its preferences. Each camera has its own
     // preferences.
-    public void setLocalId(Context context, int cameraId) {
+    public void setLocalId(Context context, int cameraId) {    //前置和后置的摄像头，分别有不同的配置的
         String prefName = getLocalSharedPreferencesName(context, cameraId);
         if (mPrefLocal != null) {
             mPrefLocal.unregisterOnSharedPreferenceChangeListener(this);

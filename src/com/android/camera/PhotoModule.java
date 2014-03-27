@@ -362,7 +362,7 @@ public class PhotoModule
         mUI = new PhotoUI(activity, this, parent);
         mPreferences = new ComboPreferences(mActivity);
         CameraSettings.upgradeGlobalPreferences(mPreferences.getGlobal());
-        mCameraId = getPreferredCameraId(mPreferences);
+        mCameraId = getPreferredCameraId(mPreferences);    //这里默认返回的是后置摄像头。除非通过intent传进来的参数为1，1为前置摄像头
 
         mContentResolver = mActivity.getContentResolver();
 
@@ -373,7 +373,7 @@ public class PhotoModule
         mPreferences.setLocalId(mActivity, mCameraId);
         CameraSettings.upgradeLocalPreferences(mPreferences.getLocal());
         // we need to reset exposure for the preview
-        resetExposureCompensation();
+        resetExposureCompensation();    //重置曝光
 
         initializeControlByIntent();
         mQuickCapture = mActivity.getIntent().getBooleanExtra(EXTRA_QUICK_CAPTURE, false);

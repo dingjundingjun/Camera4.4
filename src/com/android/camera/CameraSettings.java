@@ -429,7 +429,7 @@ public class CameraSettings {
     }
 
     public static int readPreferredCameraId(SharedPreferences pref) {
-        return Integer.parseInt(pref.getString(KEY_CAMERA_ID, "0"));
+        return Integer.parseInt(pref.getString(KEY_CAMERA_ID, "0"));    //默认是0，0就是后置摄像头
     }
 
     public static void writePreferredCameraId(SharedPreferences pref,
