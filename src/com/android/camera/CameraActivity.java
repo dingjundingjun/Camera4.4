@@ -1171,12 +1171,12 @@ public class CameraActivity extends Activity
     }
 
     private void setRotationAnimation() {
-        int rotationAnimation = WindowManager.LayoutParams.ROTATION_ANIMATION_ROTATE;
-        rotationAnimation = WindowManager.LayoutParams.ROTATION_ANIMATION_CROSSFADE;
-        Window win = getWindow();
-        WindowManager.LayoutParams winParams = win.getAttributes();
-        winParams.rotationAnimation = rotationAnimation;
-        win.setAttributes(winParams);
+//        int rotationAnimation = WindowManager.LayoutParams.ROTATION_ANIMATION_ROTATE;
+//        rotationAnimation = WindowManager.LayoutParams.ROTATION_ANIMATION_CROSSFADE;
+//        Window win = getWindow();
+//        WindowManager.LayoutParams winParams = win.getAttributes();
+//        winParams.rotationAnimation = rotationAnimation;
+//        win.setAttributes(winParams);
     }
 
     @Override
