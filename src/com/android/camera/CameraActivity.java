@@ -1429,7 +1429,7 @@ public class CameraActivity extends Activity
                 mCurrentModule = new VideoModule();
                 break;
 
-            case ModuleSwitcher.PHOTO_MODULE_INDEX:
+            case ModuleSwitcher.PHOTO_MODULE_INDEX:    //默认是这个
                 mCurrentModule = new PhotoModule();
                 break;
 
