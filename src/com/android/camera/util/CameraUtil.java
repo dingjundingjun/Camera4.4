@@ -509,6 +509,9 @@ public class CameraUtil {
         for (int i = 0; i < sizes.length; i++) {
             Point size = sizes[i];
             double ratio = (double) size.x / size.y;
+			Log.d(TAG, "ratio=>" + ratio + " targetRatia=>" + targetRatio
+					+ " targetHeight=>" + targetHeight + " size.x=>" + size.x
+					+ " size.y=>" + size.y);
             if (Math.abs(ratio - targetRatio) > ASPECT_TOLERANCE) continue;
             if (Math.abs(size.y - targetHeight) < minDiff) {
                 optimalSizeIndex = i;

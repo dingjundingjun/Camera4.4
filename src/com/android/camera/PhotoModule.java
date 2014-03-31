@@ -1557,7 +1557,7 @@ public class PhotoModule
     private void updateCameraParametersInitialize() {
         // Reset preview frame rate to the maximum because it may be lowered by
         // video camera application.
-        int[] fpsRange = CameraUtil.getPhotoPreviewFpsRange(mParameters);
+        int[] fpsRange = CameraUtil.getPhotoPreviewFpsRange(mParameters);    //帧率
         if (fpsRange != null && fpsRange.length > 0) {
             mParameters.setPreviewFpsRange(
                     fpsRange[Parameters.PREVIEW_FPS_MIN_INDEX],
@@ -1574,7 +1574,7 @@ public class PhotoModule
         }
     }
 
-    private void updateCameraParametersZoom() {
+    private void updateCameraParametersZoom() {    //更新变焦支持
         // Set zoom.
         if (mParameters.isZoomSupported()) {
             mParameters.setZoom(mZoomValue);
@@ -1616,6 +1616,7 @@ public class PhotoModule
         // Set picture size.
         String pictureSize = mPreferences.getString(
                 CameraSettings.KEY_PICTURE_SIZE, null);
+        //这里从配置中读一个图片大小，判断是否支持该图片大小。
         if (pictureSize == null) {
             CameraSettings.initialCameraPictureSize(mActivity, mParameters);
         } else {
@@ -1628,9 +1629,12 @@ public class PhotoModule
         // Set a preview size that is closest to the viewfinder height and has
         // the right aspect ratio.
         List<Size> sizes = mParameters.getSupportedPreviewSizes();
+        //根据图片的大小，找到最佳的预览尺寸  500W的最佳匹配为1024 768
+        Log.d(TAG, "picture ize => " + size.width + " " + size.height);
         Size optimalSize = CameraUtil.getOptimalPreviewSize(mActivity, sizes,
                 (double) size.width / size.height);
         Size original = mParameters.getPreviewSize();
+        Log.d(TAG, "original picture ize => " + original.width + " " + original.height);
         if (!original.equals(optimalSize)) {
             mParameters.setPreviewSize(optimalSize.width, optimalSize.height);
 
@@ -1902,14 +1906,14 @@ public class PhotoModule
         editor.apply();
     }
 
-    private void initializeCapabilities() {
+    private void initializeCapabilities() {    //初始化性能
         mInitialParams = mCameraDevice.getParameters();
-        mFocusAreaSupported = CameraUtil.isFocusAreaSupported(mInitialParams);
+        mFocusAreaSupported = CameraUtil.isFocusAreaSupported(mInitialParams);    //对焦
         mMeteringAreaSupported = CameraUtil.isMeteringAreaSupported(mInitialParams);
-        mAeLockSupported = CameraUtil.isAutoExposureLockSupported(mInitialParams);
-        mAwbLockSupported = CameraUtil.isAutoWhiteBalanceLockSupported(mInitialParams);
+        mAeLockSupported = CameraUtil.isAutoExposureLockSupported(mInitialParams);    //自动曝光
+        mAwbLockSupported = CameraUtil.isAutoWhiteBalanceLockSupported(mInitialParams);    //白平衡
         mContinuousFocusSupported = mInitialParams.getSupportedFocusModes().contains(
-                CameraUtil.FOCUS_MODE_CONTINUOUS_PICTURE);
+                CameraUtil.FOCUS_MODE_CONTINUOUS_PICTURE);    //连拍
     }
 
     @Override

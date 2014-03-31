@@ -232,11 +232,12 @@ public class PhotoUI implements PieListener,
         if (aspectRatio < 1f) {
             aspectRatio = 1f / aspectRatio;
         }
-
+        Log.d(TAG, "mPreviewWidth=>" + mPreviewWidth + " mPreviewHeight=>" + mPreviewHeight);
         if (mAspectRatio != aspectRatio) {
             mAspectRatio = aspectRatio;
             // Update transform matrix with the new aspect ratio.
             if (mPreviewWidth != 0 && mPreviewHeight != 0) {
+            	Log.d(TAG, "mPreviewWidth=>" + mPreviewWidth + " mPreviewHeight=>" + mPreviewHeight);
                 setTransformMatrix(mPreviewWidth, mPreviewHeight);
             }
         }
