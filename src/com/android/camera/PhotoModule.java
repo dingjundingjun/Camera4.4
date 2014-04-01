@@ -445,6 +445,7 @@ public class PhotoModule
 
         int width = root.getWidth();
         int height = root.getHeight();
+        //刚打开的时候都为0,因为view还没初始化成功显示出来？
         mFocusManager.setPreviewSize(width, height);
         openCameraCommon();
     }
@@ -1184,7 +1185,7 @@ public class PhotoModule
         initializeCapabilities();
         if (mFocusManager == null) initializeFocusManager();
         setCameraParameters(UPDATE_PARAM_ALL);
-        mHandler.sendEmptyMessage(CAMERA_OPEN_DONE);
+        mHandler.sendEmptyMessage(CAMERA_OPEN_DONE);    //打开相机
         mCameraPreviewParamsReady = true;
         startPreview();
         mOnResumeTime = SystemClock.uptimeMillis();

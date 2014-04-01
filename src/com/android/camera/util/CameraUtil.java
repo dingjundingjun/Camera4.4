@@ -684,6 +684,7 @@ public class CameraUtil {
     public static Rect rectFToRect(RectF rectF) {
         Rect rect = new Rect();
         rectFToRect(rectF, rect);
+        Log.d(TAG, "rect.right=>" + rect.right + " rect.bottom=>" + rect.bottom);
         return rect;
     }
 

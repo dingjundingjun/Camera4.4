@@ -244,21 +244,28 @@ public class PhotoUI implements PieListener,
     }
 
     private void setTransformMatrix(int width, int height) {
+    	//H10上 mPreviewWidth = 1280 mPreviewHeight = 800;获取的最佳分辨率为800*600
         mMatrix = mTextureView.getTransform(mMatrix);
         float scaleX = 1f, scaleY = 1f;
         float scaledTextureWidth, scaledTextureHeight;
-        if (width > height) {
-            scaledTextureWidth = Math.max(width,
+        if (width > height) {  
+            scaledTextureWidth = Math.max(width,    //H10	1280
                     (int) (height * mAspectRatio));
-            scaledTextureHeight = Math.max(height,
+            scaledTextureHeight = Math.max(height,  //960
                     (int)(width / mAspectRatio));
         } else {
-            scaledTextureWidth = Math.max(width,
+            scaledTextureWidth = Math.max(width,   //H10   960
                     (int) (height / mAspectRatio));
-            scaledTextureHeight = Math.max(height,
+            scaledTextureHeight = Math.max(height, //1280
                     (int) (width * mAspectRatio));
         }
-
+		Log.d(TAG, "scaledTextureWidth=>" + scaledTextureWidth
+				+ " scaledTextureHeight=>" + scaledTextureHeight
+				+ " mSurfaceTextureUncroppedWidth=>"
+				+ mSurfaceTextureUncroppedWidth
+				+ " mSurfaceTextureUncroppedHeight=>"
+				+ mSurfaceTextureUncroppedHeight);
+        
         if (mSurfaceTextureUncroppedWidth != scaledTextureWidth ||
                 mSurfaceTextureUncroppedHeight != scaledTextureHeight) {
             mSurfaceTextureUncroppedWidth = scaledTextureWidth;
@@ -274,9 +281,18 @@ public class PhotoUI implements PieListener,
         mTextureView.setTransform(mMatrix);
 
         // Calculate the new preview rectangle.
+       
         RectF previewRect = new RectF(0, 0, width, height);
-        mMatrix.mapRect(previewRect);
-        mController.onPreviewRectChanged(CameraUtil.rectFToRect(previewRect));
+		Log.d(TAG, "previewRect.top=>" + previewRect.top
+				+ " previewRect.left=>" + previewRect.right
+				+ "previewRect.right=>" + previewRect.right
+				+ " previewRect.bottom=>" + previewRect.bottom);
+		mMatrix.mapRect(previewRect);
+		Log.d(TAG, "previewRect.top=>" + previewRect.top
+				+ " previewRect.left=>" + previewRect.left
+				+ "previewRect.right=>" + previewRect.right
+				+ " previewRect.bottom=>" + previewRect.bottom);
+		mController.onPreviewRectChanged(CameraUtil.rectFToRect(previewRect));
     }
 
     protected Object getSurfaceTextureLock() {
@@ -290,6 +306,7 @@ public class PhotoUI implements PieListener,
             mSurfaceTexture = surface;
             mController.onPreviewUIReady();
             // Workaround for b/11168275, see b/10981460 for more details
+            Log.d(TAG, "onSurfaceTextureAvailable mPreviewWidth=>" + mPreviewWidth + " mPreviewHeight=>" + mPreviewHeight);
             if (mPreviewWidth != 0 && mPreviewHeight != 0) {
                 // Re-apply transform matrix for new surface texture
                 setTransformMatrix(mPreviewWidth, mPreviewHeight);

@@ -159,6 +159,11 @@ public class FocusOverlayManager {
     }
 
     public void setPreviewSize(int previewWidth, int previewHeight) {
+		Log.d(TAG,
+				"previewWidth=>" + previewWidth + " previewHeight=>"
+						+ previewHeight + " mPreviewRect.width=>"
+						+ mPreviewRect.width() + " mPreviewRect.height=>"
+						+ mPreviewRect.height());
         if (mPreviewRect.width() != previewWidth || mPreviewRect.height() != previewHeight) {
             setPreviewRect(new Rect(0, 0, previewWidth, previewHeight));
         }
