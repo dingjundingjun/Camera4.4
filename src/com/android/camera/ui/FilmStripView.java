@@ -1714,7 +1714,7 @@ public class FilmStripView extends ViewGroup implements BottomControlsListener {
     public void setDataAdapter(DataAdapter adapter) {
         mDataAdapter = adapter;
         mDataAdapter.suggestViewSizeBound(getMeasuredWidth(), getMeasuredHeight());
-        mDataAdapter.setListener(new DataAdapter.Listener() {
+        mDataAdapter.setListener(new DataAdapter.Listener() {    //应该是 这里开始加载预览数据?
             @Override
             public void onDataLoaded() {
                 reload();

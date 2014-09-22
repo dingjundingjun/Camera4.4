@@ -199,7 +199,7 @@ public class PhotoUI implements PieListener,
         mFlashOverlay = mRootView.findViewById(R.id.flash_overlay);    //这个不知道是干什么的？
         mPreviewCover = mRootView.findViewById(R.id.preview_cover);    //当预览加载成功以后，这个将会消失。
         // display the view
-        mTextureView = (TextureView) mRootView.findViewById(R.id.preview_content);
+        mTextureView = (TextureView) mRootView.findViewById(R.id.preview_content);    //这个是显示预览
         mTextureView.setSurfaceTextureListener(this);
         mTextureView.addOnLayoutChangeListener(mLayoutListener);
         initIndicators();
@@ -396,7 +396,7 @@ public class PhotoUI implements PieListener,
     }
 
     public void initializeControlByIntent() {
-        mPreviewThumb = (ImageView) mRootView.findViewById(R.id.preview_thumb);
+        mPreviewThumb = (ImageView) mRootView.findViewById(R.id.preview_thumb);    //拍照缩略图
         mPreviewThumb.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {

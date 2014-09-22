@@ -1070,7 +1070,7 @@ public class CameraActivity extends Activity
         LayoutInflater inflater = getLayoutInflater();
         View rootLayout = inflater.inflate(R.layout.camera, null, false);
         mCameraModuleRootView = rootLayout.findViewById(R.id.camera_app_root);
-        mPanoStitchingPanel = findViewById(R.id.pano_stitching_progress_panel);
+        mPanoStitchingPanel = findViewById(R.id.pano_stitching_progress_panel);    //全景模式下,提示栏
         mBottomProgress = (ProgressBar) findViewById(R.id.pano_stitching_progress_bar);
         mCameraPreviewData = new CameraPreviewData(rootLayout,
                 FilmStripView.ImageData.SIZE_FULL,
@@ -1124,7 +1124,8 @@ public class CameraActivity extends Activity
             mDataAdapter = mWrappedDataAdapter;
             mFilmStripView.setDataAdapter(mDataAdapter);
             if (!isCaptureIntent()) {
-                mDataAdapter.requestLoad(getContentResolver());
+                mDataAdapter.requestLoad(getContentResolver());    //这里会跑CameraDataAdapter里的requestLoad,因为wrappedDataAdapter初始化的时候,new了一个CameraDataAdapter传进去.
+                //屏蔽掉这个,不能滑动查看已经拍的照片了....
             }
         } else {
             // Put a lock placeholder as the last image by setting its date to
@@ -1425,7 +1426,7 @@ public class CameraActivity extends Activity
     private void setModuleFromIndex(int moduleIndex) {
         mCurrentModuleIndex = moduleIndex;
         switch (moduleIndex) {
-            case ModuleSwitcher.VIDEO_MODULE_INDEX:
+            case ModuleSwitcher.VIDEO_MODULE_INDEX:    //录像
                 mCurrentModule = new VideoModule();
                 break;
 

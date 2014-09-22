@@ -108,6 +108,7 @@ public class CameraDataAdapter implements LocalDataAdapter {
     public void setListener(Listener listener) {
         mListener = listener;
         if (mImages != null) {
+        	Log.d(TAG, "setListener 111111111111111111111111111111111111111111111111111");
             mListener.onDataLoaded();
         }
     }
