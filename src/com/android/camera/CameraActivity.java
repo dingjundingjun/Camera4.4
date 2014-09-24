@@ -1238,10 +1238,10 @@ public class CameraActivity extends Activity
         UsageStatistics.onEvent(UsageStatistics.COMPONENT_CAMERA,
                 UsageStatistics.ACTION_FOREGROUNDED, this.getClass().getSimpleName());
 
-        mOrientationListener.enable();
+        mOrientationListener.enable();    //将屏幕旋转监听打开
         mCurrentModule.onResumeBeforeSuper();
         super.onResume();
-        mCurrentModule.onResumeAfterSuper();
+        mCurrentModule.onResumeAfterSuper();    //初始化打开相机
 
         setSwipingEnabled(true);
 

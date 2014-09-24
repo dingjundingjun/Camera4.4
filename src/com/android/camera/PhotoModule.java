@@ -1221,7 +1221,7 @@ public class PhotoModule
 
         mJpegPictureCallbackTime = 0;
         mZoomValue = 0;
-        resetExposureCompensation();
+        resetExposureCompensation();    //重置曝光
         if (!prepareCamera()) {
             // Camera failure.
             return;
