@@ -1228,10 +1228,10 @@ public class CameraActivity extends Activity
         // Auto-rotate off
         if (Settings.System.getInt(getContentResolver(),
                 Settings.System.ACCELEROMETER_ROTATION, 0) == 0) {
-            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);    //如果自动旋转屏幕是关的，则默认
             mAutoRotateScreen = false;
         } else {
-            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_FULL_SENSOR);
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_FULL_SENSOR);    //如果是打开的，则取决于sensor方向
             mAutoRotateScreen = true;
         }
 

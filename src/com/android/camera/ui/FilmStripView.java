@@ -67,6 +67,7 @@ public class FilmStripView extends ViewGroup implements BottomControlsListener {
 
     private CameraActivity mActivity;
     private FilmStripGestureRecognizer mGestureRecognizer;
+    /**初始化的时候，该adapter为FixedFirstDataAdapter*/
     private DataAdapter mDataAdapter;
     private int mViewGap;
     private final Rect mDrawArea = new Rect();
@@ -75,6 +76,7 @@ public class FilmStripView extends ViewGroup implements BottomControlsListener {
     private float mScale;
     private MyController mController;
     private int mCenterX = -1;
+    /**这5个BUFFER是用来存什么的？中间那个存的是预览数据*/
     private ViewItem[] mViewItem = new ViewItem[BUFFER_SIZE];
 
     private Listener mListener;
@@ -1717,16 +1719,19 @@ public class FilmStripView extends ViewGroup implements BottomControlsListener {
         mDataAdapter.setListener(new DataAdapter.Listener() {    //应该是 这里开始加载预览数据?
             @Override
             public void onDataLoaded() {
+            	Log.d(TAG, "onDataLoaded 11111111111111111111111111111111111111111111111111111111");
                 reload();
             }
 
             @Override
             public void onDataUpdated(DataAdapter.UpdateReporter reporter) {
+            	Log.d(TAG, "onDataUpdated 11111111111111111111111111111111111111111111111111111111");
                 update(reporter);
             }
 
             @Override
             public void onDataInserted(int dataID, ImageData data) {
+            	Log.d(TAG, "onDataInserted 11111111111111111111111111111111111111111111111111111111");
                 if (mViewItem[mCurrentItem] == null) {
                     // empty now, simply do a reload.
                     reload();
@@ -1737,6 +1742,7 @@ public class FilmStripView extends ViewGroup implements BottomControlsListener {
 
             @Override
             public void onDataRemoved(int dataID, ImageData data) {
+            	Log.d(TAG, "onDataRemoved 11111111111111111111111111111111111111111111111111111111");
                 animateItemRemoval(dataID, data);
             }
         });
@@ -1844,11 +1850,12 @@ public class FilmStripView extends ViewGroup implements BottomControlsListener {
     /** Some of the data is changed. */
     private void update(DataAdapter.UpdateReporter reporter) {
         // No data yet.
-        if (mViewItem[mCurrentItem] == null) {
+    	 Log.d(TAG, "mCurrentItem = " + mCurrentItem);
+        if (mViewItem[mCurrentItem] == null) {    // mCurrentItem 初始化为2
             reload();
             return;
         }
-
+        Log.d(TAG, "mCurrentItem = " + mCurrentItem);
         // Check the current one.
         ViewItem curr = mViewItem[mCurrentItem];
         int dataId = curr.getId();
@@ -1946,6 +1953,7 @@ public class FilmStripView extends ViewGroup implements BottomControlsListener {
         // Clear out the mViewItems and rebuild with camera in the center.
         Arrays.fill(mViewItem, null);
         int dataNumber = mDataAdapter.getTotalNumber();
+        Log.d(TAG, "dataNumber = " + dataNumber);
         if (dataNumber == 0) {
             return;
         }

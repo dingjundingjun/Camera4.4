@@ -19,6 +19,7 @@ package com.android.camera.data;
 import android.app.Activity;
 import android.content.Context;
 import android.net.Uri;
+import android.util.Log;
 import android.view.View;
 
 import com.android.camera.ui.FilmStripView.DataAdapter;
@@ -34,7 +35,7 @@ public class FixedFirstDataAdapter extends AbstractLocalDataAdapterWrapper
 
     @SuppressWarnings("unused")
     private static final String TAG = "CAM_FixedFirstDataAdapter";
-
+/**为CameraPreviewData*/
     private LocalData mFirstData;
     private Listener mListener;
 
@@ -126,8 +127,8 @@ public class FixedFirstDataAdapter extends AbstractLocalDataAdapterWrapper
     @Override
     public void setListener(Listener listener) {
         mListener = listener;
-        mAdapter.setListener((listener == null) ? null : this);
         // The first data is always there. Thus, When the listener is set,
+        mAdapter.setListener((listener == null) ? null : this);    //mAdapter 为CameraDataAdapter
         // we should call listener.onDataLoaded().
         if (mListener != null) {
             mListener.onDataLoaded();
@@ -147,6 +148,7 @@ public class FixedFirstDataAdapter extends AbstractLocalDataAdapterWrapper
         if (mListener == null) {
             return;
         }
+        Log.d(TAG, "onDataLoaded 11111111111111111111111111111111111111111111111111111111111111111111111111111");
         mListener.onDataUpdated(new UpdateReporter() {
             @Override
             public boolean isDataRemoved(int dataID) {
